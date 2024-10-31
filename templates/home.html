@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="fixed-header d-flex justify-content-between align-items-center">
+    <h3 style="color: blue;"><b>Events List (Total Events: {{ total_events }})</b></h3>
+
+    <form class="d-flex search-form" role="search" method="get" action="{% url 'homepage' %}">
+        <input class="form-control me-2" type="search" name="q" placeholder="dd-m-yyyy/location/e.Name" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button></br>
+        
+    </form>
+</div>
+
+<div class="row">
+    {% for event in data %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><strong>{{ forloop.counter }}. {{ event.event_name }}</strong></h4>
+                <h5 class="card-title">{{ event.date }} - {{ event.description }}</h5>
+                <h5 class="card-title">{{ event.location }}</h5>
+
+                {% if request.user.is_authenticated %}
+                    {% if event.has_booked %}
+                        <span class="text-success">Already Booked</span>
+                    {% else %}
+                        <a href="{% url 'book_event' event.id %}" class="btn btn-primary">Book Event</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login to Book</a>
+                {% endif %}
+
+                <a href="{% url 'view_event' event.id %}" class="btn btn-secondary">View Event</a>
+
+                <!-- Show delete button only if the user is an admin -->
+                {% if request.user.is_staff %}
+                    <a href="{% url 'delete_event' event.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

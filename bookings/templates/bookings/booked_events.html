@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 style="color: blue;"><b>Your Booked Events</b></h3>
+<div class="row">
+  {% if user_bookings %}
+    {% for booking in user_bookings %}
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title"><strong>{{ forloop.counter }}. {{ booking.event.event_name }}</strong></h4>
+            <p class="card-text">Date: {{ booking.event.date }}</p>
+            <p class="card-text">Location: {{ booking.event.location }}</p>
+            <p class="card-text">Description: {{ booking.event.description }}</p>
+            <a href="{% url 'view_event' booking.event.id %}" class="btn btn-primary">View Event</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No events booked yet.</p>
+  {% endif %}
+</div>
+
+{% endblock content %}

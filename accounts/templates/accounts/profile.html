@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+<h1 style="color: blue;">Profile of {{ data.username }} </h1>
+
+<div class="card">
+  <div class="card-body">
+    <p><strong>First Name: </strong>{{ data.first_name }}</p>
+    <p><strong>Last Name: </strong>{{ data.last_name }}</p>
+    <p><strong>Email: </strong>{{ data.email }}</p>
+    <p><strong>Mobile: </strong>{{ data.profile.mobile }}</p>
+    <p><strong>Address: </strong>{{ data.profile.address }}</p>
+  </div>
+</div>
+
+<a href="{% url 'update_profile' %}"> Update Profile</a>
+
+
+
+{% endblock content %}
+
+

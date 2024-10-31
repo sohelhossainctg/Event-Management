@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 style="font-size: large;"><b>{{ data.event_name }}</b></h3>
+<p><b>Date:</b> {{ data.date }}</p>
+<p><b>Location:</b> {{ data.location }}</p>
+<p><b>Description:</b> {{ data.description }}</p>
+<p><b>Phone Number:</b> {{ data.phone_number }}</p>
+
+<p><strong>Remaining Seats:</strong> <strong style="color: red; font-size: 20px;"> {{ remaining_seats }} </strong>
+</p>
+
+{% if user.is_authenticated %}
+{% if user != data.creator %}
+{% if remaining_seats == 0 %}
+
+<p class="text-danger">Fully Booked</p>
+{% endif %}
+{% else %}
+<p>You are the creator of this event and cannot book it.</p>
+{% endif %}
+{% else %}
+<p>Please <a href="{% url 'login' %}">login</a> to book this event.</p>
+{% endif %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock content %}

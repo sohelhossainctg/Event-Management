@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Management</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+  <style>
+    nav menu { list-style: none; padding: 0; margin: 0; }
+    nav menu li { display: inline; margin-right: 5px; }
+    nav menu li a { text-decoration: none; color: black; padding: 8px; }
+    nav menu li a:hover { background-color: blue; color: white; border-radius: 5px; }
+    .nav-item.dropdown { padding: 0; margin-top: 8px; }
+    .nav-item.dropdown:hover .nav-link { background-color: blue; color: white; border-radius: 5px; }
+    .dropdown-menu .dropdown-item:hover { background-color: blue; color: white; border-radius: 5px; }
+    .header { padding: 10px 20px; background-color: #f8f9fa; }
+    .search-form { margin-left: auto; width: auto; }
+    .content { margin-top: 20px; }
+    
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% include "partials/nav.html" %}
+  </nav>
+
+  {% block content %}
+  {% endblock content %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

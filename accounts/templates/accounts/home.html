@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Hey {{ user.first_name }} {{ user.last_name }}, You are  registered!!! </h1>
+<p style="font-size: 20px;"><a href="{% url 'profile' %}">View Your Profile</a> | <a href="{% url 'update_profile' %}">Update
+    Profile</a></p>
+
+
+{% endblock content %}
